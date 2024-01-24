@@ -1,0 +1,19 @@
+.modal-overlay {
+  position: absolute;
+  left: 25%;
+  top: 30%;
+  margin-left: -10%;
+  margin-top: -10%;
+}
+
+.modal {
+  z-index: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  width: 1000px;
+  height: 600px;
+  /* overflow: scroll; */
+  word-wrap: normal;
+}
