@@ -3,6 +3,7 @@ Run `npm start` to start the project
 #things to do:
 - add tests
 - fix wonky input fields
+- fix character encoding problem 
 - style and ui for SchoolTable and SchoolDetailsModal could use a lot of work
 - SchoolDetailsModal website link isn't working as intended (prepends localhost to url)
 - add filter and sort for table columns

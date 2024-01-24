@@ -1,0 +1,10 @@
+.tableInput {
+  width: 50px;
+  margin-left: 5px;
+  margin-right: 30px;
+}
+/* always display buttons in the input tag */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+   opacity: 1;
+}

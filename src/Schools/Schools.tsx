@@ -21,7 +21,7 @@ const Schools = () => {
     if(id === "increment" && (page+1)*numResults < schools.length){
       setPage((prevPage) => prevPage + 1);
 
-    } else if(id === 'decrement' && page > 0) {
+    } else if(id === 'decrement' && page >= 0) {
       setPage((prevPage) => prevPage - 1);
 
     }
@@ -29,7 +29,7 @@ const Schools = () => {
 
   const handlePagesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = parseInt(e.target.value, 10);
-    setPage(isNaN(newValue) ? 0 : newValue);
+    setPage(isNaN(newValue) && newValue >= 0 ? 0 : newValue);
   };
 
   const handleNumResultsButtonClick = (e: React.MouseEvent<HTMLElement>) =>{
@@ -51,17 +51,17 @@ const Schools = () => {
   };
 
   return (
-    <>
-    <div> NYC Schools List </div>
+    <div>
+    <h1 aria-label="NYC Schools List"> NYC Schools List </h1>
     <div className="tableHeader">
       <label> page number: </label>
-      <InputButton value={page} setValue={setPage} onClick={handlePageButtonClick} onChange={handlePagesChange} />
+      <InputButton value={page} onChange={handlePagesChange} />
       <label> number of results: </label>
-      <InputButton value={numResults} setValue={setNumResults} onClick={handleNumResultsButtonClick} onChange={handleNumResultsChange} />
+      <InputButton value={numResults} onChange={handleNumResultsChange} />
       <div>  total number of schools: {schools.length} </div>
     </div>
     {schools.length > 0 ? <SchoolTable data={schools.slice(page*numResults,page*numResults+ numResults)} /> : null}
-    </>
+    </div>
   )
 }
 

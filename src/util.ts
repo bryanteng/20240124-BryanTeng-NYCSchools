@@ -77,15 +77,6 @@ export const COLUMNS = [
         accessor: 'city',
     },
     {
-        Header: 'interests',
-        accessor: 'interest1',
-    },
-    {
-        Header: 'eligibility1',
-        accessor: 'eligibility1',
-        style: { 'overflow': 'hidden' }
-    },
-    {
         Header: 'phone_number',
         accessor: 'phone_number',
     },

@@ -9,7 +9,6 @@ interface SchoolDetails {
   sat_critical_reading_avg_score: string
   sat_math_avg_score:string
   sat_writing_avg_score: string
-  // [{"dbn":"18K566","school_name":"BROOKLYN GENERATION SCHOOL","num_of_sat_test_takers":"29","sat_critical_reading_avg_score":"374","sat_math_avg_score":"377","sat_writing_avg_score":"394"}]
 }
 
 interface SchoolDetailsModalProps {
@@ -24,10 +23,15 @@ const SchoolDetailsModal: React.FC<SchoolDetailsModalProps> = ({ isOpen, onClose
     return null;
   }
 
+  // schoolDetails comes from the SAT data fetch call, destructured data here, example data structure below
+  // [{"dbn":"18K566","school_name":"BROOKLYN GENERATION SCHOOL","num_of_sat_test_takers":"29","sat_critical_reading_avg_score":"374","sat_math_avg_score":"377","sat_writing_avg_score":"394"}]
   const {num_of_sat_test_takers, sat_critical_reading_avg_score, sat_math_avg_score, sat_writing_avg_score } = schoolDetails
-  const { school_name , website, overview_paragraph, phone_number, fax_number, primary_address_line_1, state_code, zip} = row
-  const isSATEmpty = num_of_sat_test_takers === ""
 
+  // row is the school data that we pulled from the initial useEffect, can destructure any of the properties of a School from here
+  const { school_name , website, overview_paragraph, phone_number, fax_number, primary_address_line_1, state_code, zip} = row
+
+  // checks if SAT data is available, displays not found if there was nothing
+  const isSATEmpty = num_of_sat_test_takers === ""
   function renderSATScores(){
     return isSATEmpty ? <div> ** SAT data not found ** </div> :
     <div>
@@ -43,6 +47,7 @@ const SchoolDetailsModal: React.FC<SchoolDetailsModalProps> = ({ isOpen, onClose
   }
 
   function renderContactInfo(){
+    // renders contact info, add more if needed
     return <>
             <h1>{school_name}</h1>
             <h3> website:  <a href={website} target="_blank" rel="noreferrer noopener"> {website} </a> </h3>
@@ -60,7 +65,7 @@ const SchoolDetailsModal: React.FC<SchoolDetailsModalProps> = ({ isOpen, onClose
         {renderSATScores()}
 
         {/* Render other details from schoolDetails if needed */}
-        <button onClick={onClose}>Close</button>
+        <button onClick={onClose} aria-label="Close modal"> Close </button>
 
       </div>
     </div>

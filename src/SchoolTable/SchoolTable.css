@@ -3,6 +3,7 @@
   height: 800px;
   max-height: 800px;
   overflow: scroll;
+  max-width: 98%;
 }
 
 table {
@@ -35,9 +36,9 @@ tr:nth-child(even) {
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
-    max-width: 30px;
     max-height: 10px;
     height: 10px;
+    max-width: 100px;
 }
 .table-row {
   cursor: pointer;

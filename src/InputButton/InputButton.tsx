@@ -1,17 +1,17 @@
 import React from 'react';
+import './InputButton.css'
 
 interface InputButtonProps {
   value: number;
-  setValue: React.Dispatch<React.SetStateAction<number>>;
-  onClick: (e: React.MouseEvent<HTMLElement>) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputButton: React.FC<InputButtonProps> = ({ value, setValue, onClick, onChange }) => {
+const InputButton: React.FC<InputButtonProps> = ({ value, onChange }) => {
   return (
     <div>
       <input
         className="tableInput"
+        aria-label="adjust input value"
         type="number"
         value={value}
         onChange={onChange}

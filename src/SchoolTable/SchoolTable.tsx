@@ -5,6 +5,7 @@ import { fetchSchoolSATScores } from '../api'
 import './SchoolTable.css'
 import SchoolDetailsModal from '../SchoolDetails/SchoolDetailsModal'
 
+// needed to open Modal in case of empty SAT data
 const emptySATSchoolObject = {
   dbn: "",
   school_name: "",
@@ -15,12 +16,27 @@ const emptySATSchoolObject = {
 }
 
 const SchoolTable: React.FC<{ data: any[] }> = ({ data }) => {
+  // create row number column
   const rowNum = {
       Header: '#',
       id: 'index',
       accessor: (_row: any, i : number) => i + 1
     }
-  const columns = useMemo(() => [rowNum, ...COLUMNS], []);
+
+  // hover cell for full text from span since cell isn't big enough to show all data some times
+  const interestsCol =  {
+        Header: 'interests',
+        accessor: 'interest1',
+        Cell: (row:any) => <div><span title={row.value}>{row.value}</span></div>
+    }
+  const eligibilityCol = {
+        Header: 'eligibility1',
+        accessor: 'eligibility1',
+        style: { 'overflow': 'hidden' },
+        Cell: (row:any) => <div><span title={row.value}>{row.value}</span></div>
+    }
+
+  const columns = useMemo(() => [rowNum, ...COLUMNS, interestsCol, eligibilityCol], []);
 
   const [selectedSchool, setSelectedSchool] = useState<any>(null)
   const [selectedRow, setSelectedRow] = useState<any>(null)
@@ -32,8 +48,12 @@ const SchoolTable: React.FC<{ data: any[] }> = ({ data }) => {
     useGlobalFilter
   );
 
+  // globalFilter filters all the data currently in the table and not all the data in the app
+  // *TODO* fix this to filter all data and display the first X number of results instead
+  // *TODO* add sort and filter to columns
   const { globalFilter } = state;
 
+  // when user clicks on a row, sends out a fetch call for SAT scores. If no SAT score is found, modal should still open but display no SAT score found
   const onRowClick = (event: any, row:any) => {
     try {
       fetchSchoolSATScores(row.dbn).then(schoolDetails => {
@@ -50,6 +70,7 @@ const SchoolTable: React.FC<{ data: any[] }> = ({ data }) => {
     }
   }
 
+  // allows users to hit excape key intead of close button to close modal
   useEffect(() => {
        const close = (e:any) => {
          if(e.keyCode === 27){
@@ -70,13 +91,14 @@ const SchoolTable: React.FC<{ data: any[] }> = ({ data }) => {
         />
         <div className="search-container">
             <input
+                aria-label="School Table text filter"
                 type="text"
                 value={globalFilter || ''}
                 onChange={(e) => setGlobalFilter(e.target.value)}
                 placeholder="filter table"
             />
         </div>
-        <table {...getTableProps()}>
+        <table {...getTableProps()} aria-label="Schools Table">
             <thead>
                 {headerGroups.map((headerGroup) => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
