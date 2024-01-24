@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './SchoolDetailsModal.css'
 import {School} from '../util'
 
