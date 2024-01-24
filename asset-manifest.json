@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/20240124-BryanTeng-NYCSchools/static/css/main.f9f8e380.css",
+    "main.js": "/20240124-BryanTeng-NYCSchools/static/js/main.a4873ea4.js",
+    "static/js/787.b54880cb.chunk.js": "/20240124-BryanTeng-NYCSchools/static/js/787.b54880cb.chunk.js",
+    "index.html": "/20240124-BryanTeng-NYCSchools/index.html",
+    "main.f9f8e380.css.map": "/20240124-BryanTeng-NYCSchools/static/css/main.f9f8e380.css.map",
+    "main.a4873ea4.js.map": "/20240124-BryanTeng-NYCSchools/static/js/main.a4873ea4.js.map",
+    "787.b54880cb.chunk.js.map": "/20240124-BryanTeng-NYCSchools/static/js/787.b54880cb.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f9f8e380.css",
+    "static/js/main.a4873ea4.js"
+  ]
+}
